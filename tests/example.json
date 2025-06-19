@@ -1,0 +1,259 @@
+{
+  "OrderBookSnapshot": {
+    "envelope": {
+      "msg_type": "OrderBookSnapshot",
+      "msg": {
+        "symbol": "AAPL",
+        "seq": 1234567890,
+        "recent_trade_price": 18750,
+        "recent_trade_qty": 100,
+        "buy_side": [
+          {
+            "price": 18745,
+            "orders": [
+              {
+                "id": 100001,
+                "qty": 500,
+                "side": "Buy"
+              },
+              {
+                "id": 100002,
+                "qty": 300,
+                "side": "Buy"
+              }
+            ]
+          },
+          {
+            "price": 18740,
+            "orders": [
+              {
+                "id": 100003,
+                "qty": 1000,
+                "side": "Buy"
+              },
+              {
+                "id": 100004,
+                "qty": 250,
+                "side": "Buy"
+              }
+            ]
+          },
+          {
+            "price": 18735,
+            "orders": [
+              {
+                "id": 100005,
+                "qty": 750,
+                "side": "Buy"
+              }
+            ]
+          },
+          {
+            "price": 18730,
+            "orders": [
+              {
+                "id": 100006,
+                "qty": 2000,
+                "side": "Buy"
+              },
+              {
+                "id": 100007,
+                "qty": 500,
+                "side": "Buy"
+              }
+            ]
+          }
+        ],
+        "sell_side": [
+          {
+            "price": 18755,
+            "orders": [
+              {
+                "id": 200001,
+                "qty": 400,
+                "side": "Sell"
+              },
+              {
+                "id": 200002,
+                "qty": 600,
+                "side": "Sell"
+              }
+            ]
+          },
+          {
+            "price": 18760,
+            "orders": [
+              {
+                "id": 200003,
+                "qty": 800,
+                "side": "Sell"
+              }
+            ]
+          },
+          {
+            "price": 18765,
+            "orders": [
+              {
+                "id": 200004,
+                "qty": 1200,
+                "side": "Sell"
+              },
+              {
+                "id": 200005,
+                "qty": 300,
+                "side": "Sell"
+              }
+            ]
+          },
+          {
+            "price": 18770,
+            "orders": [
+              {
+                "id": 200006,
+                "qty": 1500,
+                "side": "Sell"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "DeltaBatch": {
+    "envelope": {
+      "msg_type": "DeltaBatch",
+      "msg": {
+        "symbol": "AAPL",
+        "seq_start": 1234567891,
+        "seq_end": 1234567895,
+        "events": [
+          {
+            "kind": "Add",
+            "order_id": 100008,
+            "price": 18742,
+            "qty": 600,
+            "side": "Buy",
+            "seq": 1234567891
+          },
+          {
+            "kind": "Modify",
+            "order_id": 100001,
+            "price": 18745,
+            "qty": 400,
+            "side": "Buy",
+            "seq": 1234567892
+          },
+          {
+            "kind": "Trade",
+            "order_id": 200001,
+            "price": 18750,
+            "qty": 100,
+            "side": "Sell",
+            "seq": 1234567893
+          },
+          {
+            "kind": "Remove",
+            "order_id": 100005,
+            "price": 18735,
+            "qty": 0,
+            "side": "Buy",
+            "seq": 1234567894
+          },
+          {
+            "kind": "Add",
+            "order_id": 200007,
+            "price": 18758,
+            "qty": 900,
+            "side": "Sell",
+            "seq": 1234567895
+          }
+        ]
+      }
+    }
+  },
+  "OrderBookSnapshot": {
+    "envelope": {
+      "msg_type": "OrderBookSnapshot",
+      "msg": {
+        "symbol": "MSFT",
+        "seq": 9876543210,
+        "recent_trade_price": 42500,
+        "recent_trade_qty": 200,
+        "buy_side": [
+          {
+            "price": 42495,
+            "orders": [
+              {
+                "id": 300001,
+                "qty": 1000,
+                "side": "Buy"
+              }
+            ]
+          },
+          {
+            "price": 42490,
+            "orders": [
+              {
+                "id": 300002,
+                "qty": 1500,
+                "side": "Buy"
+              },
+              {
+                "id": 300003,
+                "qty": 800,
+                "side": "Buy"
+              }
+            ]
+          },
+          {
+            "price": 42485,
+            "orders": [
+              {
+                "id": 300004,
+                "qty": 2500,
+                "side": "Buy"
+              }
+            ]
+          }
+        ],
+        "sell_side": [
+          {
+            "price": 42505,
+            "orders": [
+              {
+                "id": 400001,
+                "qty": 700,
+                "side": "Sell"
+              },
+              {
+                "id": 400002,
+                "qty": 300,
+                "side": "Sell"
+              }
+            ]
+          },
+          {
+            "price": 42510,
+            "orders": [
+              {
+                "id": 400003,
+                "qty": 1200,
+                "side": "Sell"
+              }
+            ]
+          },
+          {
+            "price": 42515,
+            "orders": [
+              {
+                "id": 400004,
+                "qty": 2000,
+                "side": "Sell"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
