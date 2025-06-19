@@ -1,0 +1,112 @@
+# Market Data Level 2 Configuration
+
+# Global settings
+global:
+  log_level: "INFO"  # TRACE, DEBUG, INFO, WARN, ERROR, CRITICAL
+  log_path: "/var/log/market_data_l2"
+  log_max_size_mb: 100
+  log_max_files: 50
+
+# Feed configuration
+feed:
+  source_type: "PITCH"  # PITCH, FIX, proprietary
+  multicast_group: "224.0.1.100"
+  multicast_port: 15000
+  interface: "eth0"
+  buffer_size: 65536
+  
+  # PITCH specific settings
+  pitch:
+    unit_id: 1
+    sequence_number_gap_threshold: 10
+    heartbeat_interval_ms: 1000
+
+# Order book settings
+orderbook:
+  # Symbols to process (empty = all symbols)
+  symbols: []
+  
+  # Memory management
+  initial_capacity: 10000
+  max_price_levels: 1000
+  
+  # Publishing intervals
+  snapshot_interval_ms: 1000    # Full book snapshots
+  delta_interval_ms: 50         # Incremental updates
+  
+  # Data retention
+  keep_trade_history: true
+  max_trade_history: 10000
+
+# Level 2 Publishing
+publishing:
+  enabled: true
+  
+  # Output formats
+  formats:
+    - "flatbuffers"  # flatbuffers, json, binary
+    
+  # Kafka publishing
+  kafka:
+    enabled: true
+    topic_prefix: "md_l2"
+    partition_strategy: "symbol_hash"  # symbol_hash, round_robin
+    
+  # Shared memory publishing  
+  shared_memory:
+    enabled: false
+    path: "/dev/shm/market_data_l2"
+    size_mb: 256
+
+# Kafka cluster configuration
+kafka_cluster:
+  bootstrap_servers: "localhost:9092"
+  
+  # Producer settings
+  compression: "lz4"
+  acks: "1"
+  queue_buffering_max_messages: 1000000
+  batch_num_messages: 10000
+  linger_ms: 5
+  
+  # Consumer settings (for gap recovery)
+  group_id: "market_data_l2_gap_recovery"
+  session_timeout_ms: 6000
+  auto_offset_reset: "earliest"
+  enable_auto_commit: true
+  
+  # Topics
+  topics:
+    - "md_l2_snapshots"
+    - "md_l2_deltas"
+    - "md_l2_trades"
+
+# Performance monitoring
+monitoring:
+  enabled: true
+  stats_interval_ms: 5000
+  
+  # Latency tracking
+  latency_tracking:
+    enabled: true
+    percentiles: [50, 90, 95, 99, 99.9]
+    
+  # Memory monitoring
+  memory_monitoring:
+    enabled: true
+    alert_threshold_mb: 1024
+
+# Risk management
+risk:
+  # Circuit breakers
+  max_messages_per_second: 100000
+  max_price_deviation_percent: 10.0
+  
+  # Validation
+  price_validation:
+    min_price: 0.0001
+    max_price: 1000000.0
+  
+  quantity_validation:
+    min_quantity: 1
+    max_quantity: 10000000
